@@ -1,13 +1,9 @@
-[gacha.html](https://github.com/user-attachments/files/28126456/gacha.html)
-# text1
-ポートフォリオ
-[index.html](https://github.com/user-attachments/files/28126441/index.html)
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>崩壊:スターレイル</title>
+    <title>PORTFOLIO | フロントエンド作品集</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="data:,">
 </head>
@@ -15,25 +11,25 @@
 
     <header>
         <a href="index.html" class="header-logo-area" style="text-decoration: none;">
-    <img src="gazou/logo.png" alt="logo" class="header-logo-img">
-    <span class="logo-text">崩壊スターレイル</span>
-</a>
-<div class="logo">ホーム</div>
+            <img src="gazou/logo.png" alt="logo" class="header-logo-img">
+            <span class="logo-text">崩壊スターレイル</span>
+        </a>
+        <div class="logo">ポートフォリオ</div>
         <nav>
             <ul>
                 <li><a href="index.html">ホーム</a></li>
-                <li><a href="info.html">キャラクター</a></li>
+                <li><a href="info.html">技術解説</a></li>
                 <li><a href="gacha.html">ガチャ</a></li>
-                <li><a href="support.html">サポート</a></li>
+                <li><a href="support.html">コンタクト</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="video-background-container">
-<iframe id="bg-video" 
-        src="https://www.youtube.com/embed/EMT6GmhDiBk?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=EMT6GmhDiBk&controls=0&modestbranding=1&vq=hd1080&rel=0" 
-        frameborder="0" allow="autoplay; encrypted-media">
-</iframe>
+        <iframe id="bg-video" 
+                src="https://www.youtube.com/embed/EMT6GmhDiBk?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=EMT6GmhDiBk&controls=0&modestbranding=1&vq=hd1080&rel=0" 
+                frameborder="0" allow="autoplay; encrypted-media">
+        </iframe>
     </div>
 
     <div class="video-controls">
@@ -45,39 +41,37 @@
         <section class="hero-section">
             <div class="hero-content">
                 <h2 id="typewriter"></h2>
-                <p class="hero-sub-text">銀河を駆ける鉄道に乗って、未知の惑星へ。</p>
+                <p class="hero-sub-text">フロントエンドの技術で、没入感のあるWeb体験を構築する。</p>
             </div>
         </section>
 
-<section class="description-section">
-    <div class="info-card">
-        <h3>果てなき銀河を往く「星穹列車」</h3>
-        <p>
-            宇宙には「星神（アイオーン）」と呼ばれる存在が、それぞれの「運命」を司り君臨しています。<br>
-            あなたは記憶を失った「開拓者」として、銀河を走る「星穹列車」に乗り込み、かつてこの道を切り拓いた星神「アキヴィリ」の足跡を辿ることになります。
-        </p>
-    </div>
-    
-    <div class="info-card">
-        <h3>万物の癌「星核」の謎を解け</h3>
-        <p>
-            各地で文明を蝕む災厄「星核」。あなたは体内にその星核を宿しながらも、仲間の丹恒や三月なのかと共に、吹雪に閉ざされた惑星「ヤリーロ-VI」や、巨大な宇宙船「仙舟『羅浮』」を巡ります。<br>
-            そこで出会う人々との絆が、銀河の運命を変えていくことでしょう。
-        </p>
-    </div>
-
-    <div class="info-card">
-        <h3>究極の戦略と映画のような演出</h3>
-        <p>
-            シンプルながら奥深いターン制バトルは、キャラ固有の「必殺技」で最高潮へ。映画さながらのカメラワークと美麗なグラフィックが、あなたの旅を鮮やかに彩ります。<br>
-            遊び尽くせないほどのサイドストーリーやミニゲームも、この広大な宇宙には散りばめられています。
-        </p>
-    </div>
-</section>[info.html](https://github.com/user-attachments/files/28126455/info.html)
-[support.html](https://github.com/user-attachments/fil[script.js](https://github.com/user-attachments/files/28126452/script.js)es/28126446/support.ht[Uploading gacha.html…]()ml)[style.css](https://github.com/user-attachments/files/28126449/style.css)
+        <section class="description-section">
+            <div class="info-card">
+                <h3>作品概要：ファンサイト兼ガチャシミュレーター</h3>
+                <p>
+                    『崩壊：スターレイル』の世界観をWeb上に再現した、フロントエンド実装の実績用プロトタイプです。<br>
+                    ゲーム内のSF的で近未来的なデザインをCSSで表現し、JavaScriptを用いた動的なギミック（ガチャシステム、演出ポップアップ、動画API制御）を統合しています。
+                </p>
+            </div>
+            
+            <div class="info-card">
+                <h3>使用スキル & 技術スタック</h3>
+                <p>
+                    <strong>・HTML5 / CSS3:</strong> セマンティックなマークアップ、メディアクエリによるスマートフォン・PC両対応のレスポンスデザイン、斜めカットボタンなどの特殊形状UIの構築。<br>
+                    <strong>・JavaScript (ES6):</strong> 確率制御に基づいたシミュレーションロジック、DOM操作による星5演出ポップアップ、YouTube Iframe Player APIを用いた背景動画の高度な制御。
+                </p>
+            </div>
+            
+            <div class="info-card">
+                <h3>デザインとユーザー体験へのこだわり</h3>
+                <p>
+                    ただデータを表示するだけでなく、閲覧者が「おっ」と思うような没入感を意識しました。ページを開いた瞬間のタイプライター演出や、最高レア（星5）が当選した際の全画面カットイン演出など、細部のモーションと演出クオリティに徹底的にこだわっています。
+                </p>
+            </div>
+        </section>
 
         <footer class="site-footer">
-            <p>© COGNOSPHERE. All Rights Reserved.</p>
+            <p>© 2026 Web Developer Portfolio. All Rights Reserved.</p>
         </footer>
     </main>
 
