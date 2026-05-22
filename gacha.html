@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跳躍 | ガチャシミュレーション</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-top">
+    <header>
+        <a href="index.html" class="header-logo-area" style="text-decoration: none;">
+    <img src="gazou/logo.png" alt="logo" class="header-logo-img">
+    <span class="logo-text">崩壊スターレイル</span>
+</a>
+        <div class="logo">跳躍 ガチャシミュレーション</div>
+        <nav><ul>
+            <li><a href="index.html">ホーム</a></li>
+            <li><a href="info.html">キャラクター</a></li>
+            <li><a href="gacha.html">ガチャ</a></li>
+            <li><a href="support.html">サポート</a></li>
+        </ul></nav>
+    </header>
+
+    <main class="gacha-container">
+        <div class="main-visual" style="opacity: 0.4;">
+        
+        </div>
+
+        <div class="gacha-banner">
+            <h2>イベント跳躍「限定ピックアップ」</h2>
+            
+            <div class="gacha-status">
+                累計跳躍回数: <span id="gacha-count">0</span>回
+            </div>
+
+            <div id="gacha-result" class="result-display">
+                「跳躍」ボタンを押して運命を手に入れよう
+            </div>
+
+            <div class="controls">
+                <button onclick="playGacha(1)" class="btn-gacha">1回跳躍</button>
+                <button onclick="playGacha(10)" class="btn-gacha gold">10回跳躍</button>
+                <div class="reset-area">
+                    <button onclick="resetGacha()" class="btn-reset">記録をリセット</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

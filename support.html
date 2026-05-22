@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サポート | 銀河鉄道の案内所</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-top">
+
+    <header>
+<a href="index.html" class="header-logo-area" style="text-decoration: none;">
+    <img src="gazou/logo.png" alt="logo" class="header-logo-img">
+    <span class="logo-text">崩壊スターレイル</span>
+</a>
+<div class="logo">サポート</div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="info.html">キャラクター</a></li>
+                <li><a href="gacha.html">ガチャ</a></li>
+                <li><a href="support.html">サポート</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="info-main">
+        <div class="description-section">
+            <div class="info-card">
+    <h3>銀河への乗車券を入手</h3>
+    <p>『崩壊：スターレイル』をインストールして、あなただけの銀河の旅を始めましょう。</p>
+    
+    <div class="install-visual">
+        <img src="gazou/support_hero.webp" alt="銀河の冒険へ" class="install-img">
+    </div>
+
+    <div class="platform-container">
+        <div class="platform-box">
+            <span class="platform-label">PC版</span>
+            <a href="https://hsr.hoyoverse.com/ja-jp/home" target="_blank" class="btn-platform">Windows / Epic</a>
+        </div>
+        
+        <div class="platform-box">
+            <span class="platform-label">Mobile版</span>
+            <div class="mobile-btns">
+                <a href="https://apps.apple.com/jp/app/id1599719154" target="_blank" class="btn-platform ios">iPhone (App Store)</a>
+                <a href="https://play.google.com/store/apps/details?id=com.HoYoverse.hkrpgoversea" target="_blank" class="btn-platform android">Android (Google Play)</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+            </div>
+
+<div class="info-card" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+    <h3>開拓者へのサポート</h3>
+    <p>旅の途中で困ったことや、システム上の不具合があればこちらから報告してください。</p>
+    <form class="support-form">
+        <input type="text" placeholder="開拓者名 (お名前)" class="support-input">
+        <input type="email" placeholder="連絡先メールアドレス" class="support-input">
+        <textarea placeholder="お問い合わせ内容を入力してください..." class="support-input" rows="5"></textarea>
+        <button type="button" class="btn-gacha gold" onclick="sendSupport()">メッセージを送信</button>
+    </form>
+</div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

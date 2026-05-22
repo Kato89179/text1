@@ -1,0 +1,1042 @@
+/* =========================================
+   1. 基本設定 & 変数
+   ========================================= */
+:root {
+    --sr-blue: #060c1a;
+    --sr-gold: #c6a06d;
+    --sr-gold-bright: #f4d0a3;
+    --sr-silver: #e7e7e7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--sr-blue);
+    color: var(--sr-silver);
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    overflow-x: hidden; /* 横揺れ防止 */
+}
+
+/* =========================================
+   2. ヘッダー
+   ========================================= */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    height: 70px;
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom: 2px solid var(--sr-gold);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-logo-area { display: flex; align-items: center; gap: 12px; }
+.header-logo-img { height: 35px; width: auto; }
+.logo-text { font-size: 1.1rem; font-weight: bold; color: #fff; }
+
+nav ul { display: flex; list-style: none; }
+nav a { color: #fff; text-decoration: none; margin-left: 20px; font-size: 0.9rem; transition: 0.3s; }
+nav a:hover { color: var(--sr-gold); }
+
+/* =========================================
+   3. 背景PV設定（HOME専用：固定）
+   ========================================= */
+.video-background-container {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -1;
+    background: #000;
+}
+
+.video-background-container iframe {
+    width: 100vw;
+    height: 56.25vw; /* 16:9比率 */
+    min-height: 100vh;
+    min-width: 177.77vh;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+/* 音声解除ボタン */
+.video-controls {
+    position: fixed;
+    bottom: 30px;
+    right: 5%;
+    z-index: 1001;
+}
+
+.control-btn {
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--sr-gold);
+    border: 1px solid var(--sr-gold);
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+    transition: 0.3s;
+}
+
+.control-btn:hover { background: var(--sr-gold); color: #000; }
+
+/* =========================================
+   4. メインコンテンツ（スクロール層）
+   ========================================= */
+.home-scroll-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto; /* スクロールを許可 */
+}
+
+/* 1枚目：透明セクション */
+/* --- ホーム：文字とコピーをさらに下へ移動 --- */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 8% 40px; /* 下の余白をさらに詰め、極限まで下へ */
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+}
+
+#typewriter {
+    font-size: 2.8rem;
+    color: var(--sr-gold);
+    text-shadow: 2px 2px 15px #000;
+    margin-bottom: 10px;
+}
+
+.hero-sub-text {
+    font-size: 1.2rem;
+    color: #fff;
+    text-shadow: 0 0 10px #000;
+}
+
+/* 2枚目：紹介文セクション */
+.description-section {
+    background: rgba(6, 12, 26, 0.95); /* 濃い背景色で文字を読みやすく */
+    padding: 100px 8%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+.info-card {
+    max-width: 800px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid var(--sr-gold);
+    padding: 35px;
+    transition: 0.4s;
+}
+
+.info-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+}
+
+.info-card h3 { color: var(--sr-gold); font-size: 1.8rem; margin-bottom: 15px; }
+.info-card p { line-height: 1.8; font-size: 1.1rem; color: #ddd; }
+
+.action-area-bottom { margin-top: 40px; text-align: center; }
+
+.btn-start {
+    display: inline-block;
+    background: var(--sr-gold);
+    color: #000 !important;
+    padding: 18px 70px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+    transition: 0.3s;
+}
+
+.site-footer {
+    background: #000;
+    color: #666;
+    text-align: center;
+    padding: 30px;
+}
+
+/* =========================================
+   5. 他のページ（INFO/GACHA）用
+   ========================================= */
+.info-main, .gacha-container {
+    margin-top: 100px;
+    padding: 40px 5%;
+    position: relative;
+    z-index: 10;
+}
+
+.tab-content { display: none; align-items: center; gap: 40px; }
+.tab-content.show { display: flex; }
+.char-standing-img { height: 70vh; object-fit: contain; }
+
+/* =========================================
+   INFOページ（名簿）専用スタイル
+   ========================================= */
+.info-main {
+    margin-top: 100px;
+    padding: 0 8%;
+}
+
+.tab-area {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.tab-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--sr-gold);
+    color: #fff;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-weight: bold;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+    transition: 0.3s;
+}
+
+.tab-btn.active, .tab-btn:hover {
+    background: var(--sr-gold);
+    color: #000;
+}
+
+.char-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    animation: fadeIn 0.8s ease;
+}
+
+.char-standing-img {
+    height: 75vh;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(198, 160, 109, 0.3));
+}
+
+.rarity { color: var(--sr-gold); font-size: 1.2rem; letter-spacing: 3px; }
+
+.char-info-text h3 {
+    font-size: 2.8rem;
+    color: var(--sr-gold);
+    margin: 10px 0;
+}
+
+.tag {
+    background: rgba(198, 160, 109, 0.2);
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 4px;
+    margin-bottom: 25px;
+}
+
+.desc-box {
+    max-width: 500px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #eee;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- ポップなNEWバッジの動き --- */
+.new-badge {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    background: #ff4757; /* 鮮やかな赤 */
+    color: white;
+    padding: 5px 15px;
+    font-weight: bold;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    box-shadow: 0 0 15px #ff4757;
+    animation: bounce 1s infinite alternate; /* 跳ねるアニメーション */
+    z-index: 20;
+}
+
+/* --- 名前にポップな影をつける --- */
+.pop-name {
+    font-size: 3rem !important;
+    color: var(--sr-gold) !important; /* 金色一色に */
+    text-shadow: none !important;    /* 二重に見える影を削除 */
+    margin-bottom: 20px;
+}
+
+/* --- キャラ画像がふわふわ浮く --- */
+.pop-up {
+    animation: floating 3s ease-in-out infinite;
+}
+
+/* --- アニメーション設定 --- */
+@keyframes bounce {
+    from { transform: translateY(0) rotate(-10deg); }
+    to { transform: translateY(-10px) rotate(-10deg); }
+}
+
+@keyframes floating {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+}
+
+/* 画像を囲むコンテナを相対位置にする */
+.img-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* --- ガチャ当たり演出（全画面） --- */
+.gacha-win-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.win-content {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(198, 160, 109, 0.2), transparent);
+    padding: 50px;
+    border: 2px solid var(--sr-gold);
+    box-shadow: 0 0 50px var(--sr-gold);
+    border-radius: 20px;
+}
+
+.win-new {
+    color: #ff4757;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    animation: bounce 0.5s infinite alternate;
+}
+
+.win-name {
+    font-size: 4rem;
+    color: #fff;
+    text-shadow: 0 0 20px var(--sr-gold);
+    margin-bottom: 20px;
+}
+
+.win-phrase {
+    font-style: italic;
+    color: var(--sr-gold-bright);
+    margin-bottom: 30px;
+}
+
+.btn-close {
+    background: var(--sr-gold);
+    border: none;
+    padding: 10px 40px;
+    cursor: pointer;
+    font-weight: bold;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+}
+
+/* 文字色分け */
+.win-5 { color: #f4d0a3; font-weight: bold; text-shadow: 0 0 5px #f4d0a3; }
+.win-4 { color: #d4a3f4; font-weight: bold; }
+.win-3 { color: #a3c6f4; }
+
+/* =========================================
+   ガチャボタン・特殊デザイン
+   ========================================= */
+
+/* ボタン共通設定 */
+.btn-gacha {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 15px 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    overflow: hidden;
+    /* スターレイル風の斜めカット */
+    clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
+    transition: all 0.3s ease;
+    margin: 10px;
+    min-width: 180px;
+}
+
+/* 10連ボタン（ゴールド） */
+.btn-gacha.gold {
+    background: linear-gradient(135deg, #c6a06d 0%, #f4d0a3 100%);
+    color: #000;
+    border: none;
+    box-shadow: 0 0 15px rgba(198, 160, 109, 0.4);
+}
+
+/* ホバー演出 */
+.btn-gacha:hover {
+    transform: scale(1.05) translateX(5px);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.btn-gacha.gold:hover {
+    background: linear-gradient(135deg, #f4d0a3 0%, #ffffff 100%);
+    box-shadow: 0 0 30px #f4d0a3;
+}
+
+/* ボタンの中を流れる光のエフェクト */
+.btn-gacha::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: 0.5s;
+}
+
+.btn-gacha:hover::after {
+    left: 100%;
+}
+
+/* リセットボタン（控えめだがシャープに） */
+.btn-reset {
+    background: transparent;
+    color: #888;
+    border: 1px solid #444;
+    padding: 8px 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+    transition: 0.3s;
+    margin-top: 30px;
+}
+
+.btn-reset:hover {
+    color: #ff4757;
+    border-color: #ff4757;
+}
+
+/* ガチャバナー全体のレイアウト調整 */
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.reset-area {
+    margin-top: 20px;
+}
+
+/* 当たり演出内の画像フレーム */
+.win-avatar-frame {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    border: 3px solid var(--sr-gold);
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(198, 160, 109, 0.6);
+    position: relative;
+}
+
+.win-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 枠に合わせて切り抜き */
+    animation: zoomIn 0.5s ease-out;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(1.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* --- サポート：お問い合わせフォームの完全中央配置 --- */
+.support-form {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* 子要素（入力欄やボタン）を中央に */
+    gap: 15px;
+    margin: 30px auto 0 !important; /* 左右をautoにして中央へ */
+    max-width: 500px;
+    width: 100%;
+}
+
+.support-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(198, 160, 109, 0.5);
+    padding: 12px;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    text-align: left;
+}
+
+/* 送信ボタンの幅と位置 */
+.support-form .btn-gacha.gold {
+    margin: 10px 0 0 0 !important;
+    width: fit-content !important;
+    padding: 12px 40px !important;
+}
+/* --- サポートページ画像セクション --- */
+.support-image-section {
+    position: relative;
+    width: 100%;
+    margin: 40px auto; /* 上下の余白 */
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03); /* カードと同じ背景 */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(198, 160, 109, 0.2);
+}
+
+.support-hero-img {
+    max-width: 80%; /* 幅を調整 */
+    height: auto;
+    border-radius: 8px;
+    opacity: 0.9; /* 少し透明感を出す */
+    transform: scale(1.02); /* 少し大きく見せる */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.support-hero-img:hover {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.image-caption {
+    margin-top: 15px;
+    color: var(--sr-gold-bright);
+    font-size: 1rem;
+    font-style: italic;
+    text-shadow: 0 0 5px rgba(198, 160, 109, 0.5);
+}
+
+/* --- サポートページ：インストール画像の調整 --- */
+.install-visual {
+    width: 100%;
+    margin: 20px 0; /* 上下の余白 */
+    text-align: center;
+}
+
+.install-img {
+    width: 100%;
+    max-width: 600px; /* カード内で綺麗に収まるサイズ */
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid rgba(198, 160, 109, 0.4); /* スターレイル風の金の枠線 */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.install-img:hover {
+    transform: translateY(-5px); /* ホバーで少し浮く演出 */
+}
+
+/* ボタンとの間隔を調整 */
+.action-area-bottom {
+    margin-top: 20px;
+}
+
+/* 前の回答で作成した .support-image-section が不要になった場合は削除してOKです */
+
+/* --- ガチャ画面：豪華演出 --- */
+
+/* キャラクターをふわふわ浮かせる（浮遊感） */
+.floating {
+    animation: floatingAnim 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(198, 160, 109, 0.5));
+}
+
+@keyframes floatingAnim {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-15px) scale(1.02); }
+}
+
+/* 背景に流れる光の演出 */
+.gacha-bg-effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #1a2a4a 0%, #060c1a 100%);
+}
+
+.light-streak {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 100px,
+        rgba(255, 255, 255, 0.05) 101px,
+        rgba(255, 255, 255, 0.05) 102px
+    );
+    animation: streakMove 20s linear infinite;
+}
+
+@keyframes streakMove {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ぼかし背景（リッチな質感） */
+.result-display {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--sr-gold);
+    border-radius: 5px;
+    padding: 20px;
+    backdrop-filter: blur(8px); /* 高級感を出すぼかし */
+}
+
+.info-card p {
+    line-height: 1.8; /* 行間を少し広げて読みやすく */
+    margin-top: 10px;
+    font-size: 0.95rem;
+    text-align: justify; /* 両端を揃えて美しく */
+}
+
+.info-card h3 {
+    border-left: 4px solid var(--sr-gold); /* タイトル横に金の飾り線 */
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+
+.video-background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* style.css の #bg-video */
+#bg-video {
+    /* 1.1倍にしていたのを、ギリギリまで下げる */
+    transform: translate(-50%, -50%) scale(1.01); 
+    
+    /* 以下の設定は維持 */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* キャラクター詳細ボックスの強化 */
+.desc-box {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border-left: 2px solid var(--sr-gold);
+}
+
+.desc-box p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.sub-desc {
+    font-size: 0.85rem;
+    color: var(--sr-gold-bright);
+    font-style: italic;
+    border-top: 1px solid rgba(198, 160, 109, 0.2);
+    padding-top: 10px;
+}
+
+/* プラットフォーム全体のコンテナ */
+.platform-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.platform-box {
+    flex: 1;
+    min-width: 250px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(198, 160, 109, 0.3);
+}
+
+.platform-label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--sr-gold);
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* プラットフォームボタンの基本 */
+.btn-platform {
+    display: block;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    text-decoration: none;
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+    clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+    transition: 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-platform:hover {
+    background: var(--sr-gold);
+    color: #000;
+}
+
+/* モバイル用（2つ並べる） */
+.mobile-btns {
+    display: flex;
+    gap: 10px;
+}
+
+.mobile-btns .btn-platform {
+    flex: 1;
+    font-size: 0.85rem;
+}
+
+/* プラットフォームコンテナのレイアウト */
+.platform-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.platform-box {
+    flex: 1;
+    min-width: 280px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(198, 160, 109, 0.2);
+}
+
+.platform-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--sr-gold);
+    margin-bottom: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* ボタンのデザイン */
+.btn-platform {
+    display: block;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 5px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    /* スターレイル風の斜めカット */
+    clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
+}
+
+.btn-platform:hover {
+    background: var(--sr-gold);
+    color: #000;
+    transform: translateY(-2px);
+}
+
+/* モバイル用2カラム */
+.mobile-btns {
+    display: flex;
+    gap: 8px;
+}
+
+.mobile-btns .btn-platform {
+    flex: 1;
+    font-size: 0.75rem; /* 文字がはみ出さないよう少し小さめ */
+}
+
+/* =========================================
+   レスポンシブ完全統合版（ここから下を入れ替え）
+   ========================================= */
+@media (max-width: 1024px) {
+    /* 1. 全体レイアウト */
+    header { flex-direction: column; height: auto; padding: 10px; }
+    nav ul { gap: 15px; margin-top: 10px; }
+    .info-main { margin-top: 80px; padding: 0 5%; }
+
+    /* 2. キャラクター選択タブ（横スクロール） */
+    .tab-area {
+        display: flex; overflow-x: auto; white-space: nowrap;
+        justify-content: flex-start; padding: 10px 0; gap: 10px;
+    }
+    .tab-btn { flex: 0 0 auto; padding: 8px 15px; font-size: 0.85rem; }
+
+    /* 3. キャラクター表示エリア（縦並び & 中央揃え強制） */
+    .char-display { 
+        flex-direction: column !important; /* PCの横並びを確実に解除 */
+        align-items: center !important;    /* 左右中央に寄せる */
+        justify-content: center !important;
+        gap: 15px !important; 
+        text-align: center !important;
+        display: flex !important; /* 万が一消えていた場合に備え再指定 */
+    }
+
+    /* ★最重要：画像を徹底的に小さくする★ */
+    .img-container {
+        width: 150px !important;  /* 横幅を強制固定 */
+        margin: 0 auto !important; /* 左右マージンをオートにして中央へ */
+        display: block !important;
+        left: 0 !important; /* もしleft設定が残っていたらリセット */
+    }
+    .char-standing-img {
+        height: 25vh !important;  /* 縦幅を画面の4分の1に強制固定 */
+        width: auto !important;
+        object-fit: contain;
+        margin: 0 auto !important;
+    }
+
+/* INFOページのキャラ・名前を強制中央揃え */
+    .char-display {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+/* ★画像サイズ調整：横スクロールが出ない最大幅★ */
+    .img-container {
+        width: 180px !important;  /* 120pxから180pxに拡大（ほどよいサイズ） */
+        margin: 0 auto !important; 
+        display: block !important;
+        left: 0 !important; 
+    }
+
+    .char-standing-img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 35vh !important; /* 縦も少しだけ大きく */
+        object-fit: contain;
+        margin: 0 auto !important;
+    }
+
+    /* 火花・爻光の名前とバッジも画像に合わせる */
+    .pop-name {
+        font-size: 1.8rem !important; /* 文字も少しだけ戻しました */
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .new-badge {
+        left: 50% !important;
+        transform: translateX(-50%) rotate(-10deg) !important;
+        top: -15px !important;
+    }
+
+    /* 5. 紹介文（読みやすさ優先） */
+    .desc-box {
+        padding: 12px; 
+        margin: 10px auto !important; /* 中央揃え */
+        text-align: left;
+        background: rgba(255, 255, 255, 0.08);
+        width: 90% !important; /* スマホで見やすい幅 */
+    }
+    .desc-box p { font-size: 0.85rem; line-height: 1.5; }
+
+    /* 6. ホーム画面のPV調整 */
+    .video-background-container iframe {
+        width: 300%; height: 100vh;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    .hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 8% 60px; /* 120pxから60pxに減らすことで、文字がより下へ移動します */
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+}
+}
+
+/* =========================================
+   レスポンシブ完全修正版（ここから下を入れ替え）
+   ========================================= */
+@media screen and (max-width: 1024px) {
+    /* 1. 全体レイアウト */
+    header { flex-direction: column; height: auto; padding: 10px; }
+    nav ul { gap: 15px; margin-top: 10px; }
+
+    /* 2. ホーム画面：PVのズーム（隅を隠す）と文字の下配置 */
+    .video-background-container iframe {
+        width: 350% !important; 
+        height: 100vh !important;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) scale(1.3) !important;
+    }
+    .hero-section {
+        justify-content: flex-end !important;
+        padding-bottom: 80px !important;
+        text-align: center !important;
+    }
+    #typewriter { font-size: 1.6rem !important; }
+    .hero-sub-text { font-size: 0.9rem !important; }
+
+    /* 3. INFOページ：キャラクター画像（横幅を突き抜けないサイズ） */
+    .char-display {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        display: flex !important;
+    }
+
+    .img-container {
+        width: 180px !important;  /* 横スクロールが出ないギリギリの大きさ */
+        margin: 0 auto !important;
+        display: block !important;
+        left: 0 !important;
+        position: relative !important;
+    }
+
+    .char-standing-img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 40vh !important;
+        object-fit: contain;
+        margin: 0 auto !important;
+    }
+
+    /* 4. 名前とバッジの中央配置 */
+    .pop-name {
+        font-size: 1.8rem !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+    .new-badge {
+        left: 50% !important;
+        transform: translateX(-50%) rotate(-10deg) !important;
+        top: -15px !important;
+    }
+
+    /* 5. 紹介文・タブの調整 */
+    .desc-box {
+        width: 90% !important;
+        margin: 15px auto !important;
+        text-align: left;
+    }
+    .tab-area {
+        justify-content: flex-start !important;
+        overflow-x: auto !important;
+        padding: 10px 0 !important;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    /* 1. ヘッダーの高さに合わせて、メインコンテンツを下に下げる */
+    .info-main, .gacha-container {
+        /* ヘッダーが縦に並んで高くなる分、140px〜160pxほど空けます */
+        margin-top: 150px !important; 
+        padding-top: 20px !important;
+    }
+
+    /* 2. ヘッダー自体の設定（重なりを防ぐため背景を濃くする） */
+    header {
+        height: auto !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95) !important; /* 透けすぎないように */
+        z-index: 2000 !important;
+        padding: 10px 0 !important;
+    }
+
+    /* 3. ナビゲーションメニューの余白調整 */
+    nav ul {
+        flex-wrap: wrap; /* 画面が狭い時に折り返せるように */
+        justify-content: center;
+        gap: 10px;
+        padding: 5px 0;
+    }
+
+    nav a {
+        font-size: 0.85rem !important;
+        margin: 0 5px !important;
+    }
+}
+
+/* サポート：フォームを中央に強制 */
+.support-form {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin: 20px auto !important;
+    max-width: 500px;
+    width: 100%;
+}
+
+/* お問い合わせフォームを画面の真ん中に寄せる */
+.support-form {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;  /* 中の入力欄やボタンを中央に */
+    margin: 20px auto !important;    /* 外側の余白を自動にして中央に */
+    max-width: 500px;                /* 横幅が広がりすぎないように制限 */
+    width: 100%;
+}
+
+/* 入力欄の幅を揃える */
+.support-input {
+    width: 100% !important;
+    margin-bottom: 10px;
+}
+
+/* 送信ボタンも中央に配置 */
+.support-form .btn-gacha.gold {
+    margin: 10px auto !important;
+    display: block !important;
+    width: fit-content !important;
+}
+
+/* ロゴリンクの見た目を固定する */
+.header-logo-area {
+    text-decoration: none; /* 下線を消す */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer; /* マウスを乗せた時に指のマークにする */
+}
+
+.header-logo-area:hover {
+    opacity: 0.8; /* ホバーした時に少し明るくして、クリックできることを伝える */
+}

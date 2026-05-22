@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キャラクター</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-top">
+
+    <header>
+        <a href="index.html" class="header-logo-area" style="text-decoration: none;">
+    <img src="gazou/logo.png" alt="logo" class="header-logo-img">
+    <span class="logo-text">崩壊スターレイル</span>
+</a>
+<div class="logo">キャラクター</div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="info.html">キャラクター</a></li>
+                <li><a href="gacha.html">ガチャ</a></li>
+                <li><a href="support.html">サポート</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="info-main">
+ <div class="tab-area">
+    <button class="tab-btn active" onclick="showTab(event, 'char1')">開拓者</button>
+    <button class="tab-btn" onclick="showTab(event, 'char2')">丹恒</button>
+    <button class="tab-btn" onclick="showTab(event, 'char3')">三月なのか</button>
+    <button class="tab-btn" onclick="showTab(event, 'char4')">NEW! 火花</button>
+    <button class="tab-btn" onclick="showTab(event, 'char5')">NEW! 爻光</button>
+</div>
+
+<div id="char1" class="tab-content show">
+    <div class="char-display">
+        <div class="img-container">
+            <img src="gazou/HoYoWiki-image.gif" alt="開拓者" class="char-standing-img pop-up">
+        </div>
+        <div class="char-info-text">
+            <span class="rarity">★★★★★</span>
+            <h3 class="pop-name">開拓者</h3>
+            <p class="tag">運命：壊滅 / 属性：物理</p>
+            <div class="desc-box">
+                <p>
+                    物語の主人公。宇宙ステーション「ヘルタ」が襲撃された際、体内に「星核」を宿す器として目覚めた。<br>
+                    銀河を駆ける「星穹列車」の一員となり、失われた記憶と、自らの内に眠る星核の謎を解き明かす旅に出る。
+                </p>
+                <p class="sub-desc">
+                    バットを武器に戦う「壊滅」の姿以外にも、旅路で訪れる惑星の意志を継ぐことで、異なる運命と属性に目覚める可能性を秘めている。
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="char2" class="tab-content">
+    <div class="char-display">
+        <div class="img-container">
+            <img src="gazou/danheng.png" alt="丹恒" class="char-standing-img pop-up">
+        </div>
+        <div class="char-info-text">
+            <span class="rarity">★★★★</span>
+            <h3 class="pop-name">丹恒（たんこう）</h3>
+            <p class="tag">運命：巡狩 / 属性：風</p>
+            <div class="desc-box">
+                <p>
+                    星穹列車の護衛であり、冷静沈着な記録員。過去の出来事から逃れるために列車に乗り込んだ。<br>
+                    愛槍「撃雲」を手に、風のような速さで敵を穿つ。「巡狩」の運命に違わぬ、単体への圧倒的な攻撃能力を誇る。
+                </p>
+                <p class="sub-desc">
+                    あまり多くを語らないミステリアスな性格だが、仲間のピンチには真っ先に駆けつける。彼の過去は、仙舟「羅浮」の歴史と深く関わっている。
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="char3" class="tab-content">
+    <div class="char-display">
+        <div class="img-container">
+            <img src="gazou/march7th.png" alt="三月なのか" class="char-standing-img pop-up">
+        </div>
+        <div class="char-info-text">
+            <span class="rarity">★★★★</span>
+            <h3 class="pop-name">三月なのか</h3>
+            <p class="tag">運命：存護 / 属性：氷</p>
+            <div class="desc-box">
+                <p>
+                    漂流していた万年氷の中から救出された、明るく元気な少女。自分の名前すら忘れていたため、救出された日を名前にした。<br>
+                    常に「六相氷」の弓とカメラを携え、銀河の美しい景色や仲間との日常を写真に収めることを楽しみにしている。
+                </p>
+                <p class="sub-desc">
+                    バトルの要となる強力なシールドを仲間に付与する「存護」の使い手。彼女がいつか自分の過去を思い出す日は来るのだろうか。
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="char4" class="tab-content">
+    <div class="char-display">
+        <div class="img-container">
+            <span class="new-badge">NEW!</span>
+            <img src="gazou/hibana.webp" alt="火花" class="char-standing-img pop-up">
+        </div>
+        <div class="char-info-text">
+            <span class="rarity">★★★★★</span>
+            <h3 class="pop-name">火花</h3>
+            <p class="tag">運命：愉悦 / 属性：量子</p>
+            <div class="desc-box">
+                <p>
+                    近頃二相楽園で急速に頭角を現し、現地で知らぬ者はいないほどのトップに上り詰めた動画配信者。ファン(リスナー)の総称はヒバナーと呼ばれ、彼女の意のままに暴徒と化す熱狂的なファンも少なくない。
+                </p>
+                <p class="sub-desc">
+                    「『銀河打者』さん、いらっしゃ～い。こんひばな～今日も1日、脳汁どばどばで行くよ～！このきらびやかな世界で、火花みたいにキラキラしちゃってね～♥」
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="char5" class="tab-content">
+    <div class="char-display">
+        <div class="img-container">
+            <span class="new-badge">NEW!</span>
+            <img src="gazou/koukou.webp" alt="爻光" class="char-standing-img pop-up">
+        </div>
+        <div class="char-info-text">
+            <span class="rarity">★★★★★</span>
+            <h3 class="pop-name">爻光（こうこう）</h3>
+            <p class="tag">運命：知恵 / 属性：虚数</p>
+            <div class="desc-box">
+                <p>
+                    天意を読み、未来を予測することに長けた謎多き賢者。世の理を数式のように捉え、常に一歩先を見据えた行動をとる。<br>
+                    その瞳には過去と未来が同時に映っていると言われ、彼女の助言一つで文明の興亡が決まることもあるという。
+                </p>
+                <p class="sub-desc">
+                    「天意に逆らうのは難しい」と語る彼女だが、開拓者の存在だけは彼女の予測を超えた未知の変数として興味を抱いている。
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
