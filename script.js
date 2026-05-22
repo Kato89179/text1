@@ -160,3 +160,53 @@ function sendSupport() {
         form.reset(); // 入力内容をすべて消去
     }
 }
+
+// =========================================
+// 4. YouTube背景動画制御（API）
+// =========================================
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+function onYouTubeIframeAPIReady() {
+    const videoElement = document.getElementById('bg-video');
+    if (videoElement) {
+        player = new YT.Player('bg-video', {
+            events: {
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+}
+
+function onPlayerStateChange(event) {
+    const videoElement = document.getElementById('bg-video');
+    
+    // 動画が実際に再生開始（PLAYING）されたら、邪魔なUIが消えるタイミングなのでフワッと表示
+    if (event.data == YT.PlayerState.PLAYING) {
+        if (videoElement) {
+            videoElement.classList.add('video-ready');
+        }
+    }
+    
+    // 動画が終了（ENDED）したら最初から再生（ループ）
+    if (event.data == YT.PlayerState.ENDED) {
+        event.target.playVideo();
+    }
+}
+
+// ミュートボタンの制御
+const unmuteBtn = document.getElementById('unmute-btn');
+if (unmuteBtn) {
+    unmuteBtn.addEventListener('click', function() {
+        if (player && player.isMuted()) {
+            player.unMute();
+            this.innerText = "🔊 ミュート";
+        } else if (player) {
+            player.mute();
+            this.innerText = "🔇 ミュート解除";
+        }
+    });
+}
